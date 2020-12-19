@@ -83,7 +83,6 @@ void flag_number(char *argv[])
     }
 
 }
-/* /\*https://c-for-dummies.com/blog/?p=3246*\/ */
 int Number_Of_Files(DIR *folder, struct dirent *entry, int i)
 {
     if(folder == NULL)
