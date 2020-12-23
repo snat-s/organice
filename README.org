@@ -1,10 +1,10 @@
 #+TITLE: Organice
 #+DESCRIPTION: Organize your files from the terminal fast.
 #+AUTHOR: Santiago Pedroza Diaz
-* SYNOPSIS
+** SYNOPSIS
 =organice= [FLAG] [EXTENSION/NAME]...
 
-* DESCRIPTION
+** DESCRIPTION
 Makes a directory and stores all the files in two main ways, by extension or by how many they are.
 
 |------------------+-----------------------------------------------------------------|
@@ -16,16 +16,16 @@ Makes a directory and stores all the files in two main ways, by extension or by 
 | =-h= or =--help= | Displaies this information (The help is fake :) rn).            |
 
 
-** Exit status (it doesn't work right now):
+*** Exit status (it doesn't work right now):
 0 if OK,
 1 some files could not be copied.
-* AUTHOR
+** AUTHOR
 Santiago Pedroza Díaz
 
-* REPORTING BUGS
+** REPORTING BUGS
 Let me know any bugs you can contact issue a bug in the github issues.
 
-* COPYRIGHT
+** COPYRIGHT
 Copyright  ©  2020  Free  Software  Foundation,  Inc.   License  GPLv3+:  GNU  GPL  version   3   or   later
 <https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
