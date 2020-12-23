@@ -2,7 +2,7 @@
 #+DESCRIPTION: Organize your files from the terminal fast.
 #+AUTHOR: Santiago Pedroza Diaz
 * SYNOPSIS
-organice [FLAG] [EXTENSION/NAME]...
+=organice= [=FLAG=] [EXTENSION/NAME]...
 
 * DESCRIPTION
 Makes a directory and stores all the files in two main ways, by extension or by how many they are.
