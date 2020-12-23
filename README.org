@@ -16,9 +16,9 @@ Makes a directory and stores all the files in two main ways, by extension or by 
 | =-h= or =--help= | Displaies this information (The help is fake :) rn).            |
 
 
-** Exit status:
+** Exit status (it doesn't work right now):
 0 if OK,
-1 some files could not be copied
+1 some files could not be copied.
 * AUTHOR
 Santiago Pedroza Díaz
 
