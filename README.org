@@ -7,12 +7,14 @@ organice [FLAG] [EXTENSION/NAME]...
 * DESCRIPTION
 Makes a directory and stores all the files in two main ways, by extension or by how many they are.
 
+|------------------+-----------------------------------------------------------------|
+|------------------+-----------------------------------------------------------------|
+| =-n=             | To move files by title to a new directory with name.            |
+| =-e=             | To move files by extension.                                     |
+| =-r=             | At the moment it's an idea. Make flags =-n= and =-e= recursive. |
+| =-v=             | Display the version (it's alpha right now).                     |
+| =-h= or =--help= | Displaies this information (The help is fake :) rn).            |
 
--n To move files by title to a new directory with the name.
--e To Move files by extension.
--r at the moment it's just an idea, but it would make the flags -n and -e recursive.
--v Display the version (Right now it's just alpha software so it doesn't have this).
--h or --help to display this information (The help is fake :)).
 
 ** Exit status:
 0 if OK,
