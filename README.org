@@ -13,7 +13,7 @@ Makes a directory and stores all the files in two main ways, by extension or by 
 | =-e=             | To move files by extension.                                     |
 | =-r=             | At the moment it's an idea. Make flags =-n= and =-e= recursive. |
 | =-v=             | Display the version (it's alpha right now).                     |
-| =-h= or =--help= | Displaies this information (The help is fake :) rn).            |
+| =-h= or =--help= | Displays this information.                                      |
 
 
 *** Exit status (it doesn't work right now):
