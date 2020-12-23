@@ -34,31 +34,42 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
 void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_Of_Files[][256]);
 void Create_Directorie(int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[]);
-
+void Help(int flag);
 int main(int argc, char *argv[])
 {
-    DIR *folder;
-    int files = 0, i=0;
-    folder = opendir(".");
-    struct dirent *entry;
     flag_number(argv);
-    files=Number_Of_Files(folder, entry, i);
+    if(flag!=0)
+    {
+        if(flag==4)
+        {
+            Help(flag);
+        }
+        else
+        {
+            DIR *folder;
+            int files = 0, i=0;
+            folder = opendir(".");
+            struct dirent *entry;
+            files=Number_Of_Files(folder, entry, i);
 
-    char Array_Of_Files[files][256], cwd[256];
-    struct Files_To_Be_Moved Files_To_Be_Moved[files];
-    //Files_To_Be_Moved[0].size=argc;
+            char Array_Of_Files[files][256], cwd[256];
+            struct Files_To_Be_Moved Files_To_Be_Moved[files];
+            folder = opendir(".");
 
-    folder = opendir(".");
-    Make_Array_Of_Files(folder, entry, &i, Array_Of_Files);
-    Files_Moved(&files,argc,Array_Of_Files,argv, Files_To_Be_Moved);
-    getcwd(cwd,sizeof(cwd));
-    Create_Directorie(argc,Files_To_Be_Moved, argv, cwd);
-    Move_Files(argc,files,Files_To_Be_Moved, cwd, argv);
-    //printf("\n%d\n", files);
-    /* for(int k=0;k<9;k++) */
-    /* { */
-    /*   printf("%d. %s %s\n", k, Files_To_Be_Moved[k].Files_To_Be_Moved, Files_To_Be_Moved[k].Type_Of_Extension ); */
-    /* } */
+            Make_Array_Of_Files(folder, entry, &i, Array_Of_Files);
+            Files_Moved(&files,argc,Array_Of_Files,argv, Files_To_Be_Moved);
+            getcwd(cwd,sizeof(cwd));
+            Create_Directorie(argc,Files_To_Be_Moved, argv, cwd);
+            Move_Files(argc,files,Files_To_Be_Moved, cwd, argv);
+            //printf("\n%d\n", files);
+            /* for(int k=0;k<9;k++) */
+            /* { */
+            /*   printf("%d. %s %s\n", k, Files_To_Be_Moved[k].Files_To_Be_Moved, Files_To_Be_Moved[k].Type_Of_Extension ); */
+            /* } */
+        }
+        }
+
+
 
     return(0);
 }
@@ -176,4 +187,14 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
             }
         }
     }
+}
+
+void Help(int flag)
+{
+ printf("\n Organice --help\n"
+        "-n   To move files by title to a new directory with name.\n"
+        "-e To move files by extension. \n"
+        "-r At the moment it's an idea. Make flags -n and -e recursive.\n"
+        "-v Displays the version.\n"
+        "-h or --help Displays this information.\n");
 }
