@@ -2,15 +2,18 @@
 #+DESCRIPTION: Organize your files from the terminal fast.
 #+AUTHOR: Santiago Pedroza Diaz
 * SYNOPSIS
-organice [FLAG]/[EXTENSION]
+organice [FLAG] [EXTENSION/NAME]...
 
 * DESCRIPTION
 Makes a directory and stores all the files in two main ways, by extension or by how many they are.
-** -n To move files by title to a new directory with the name.
-** -e To Move files by extension.
-** -r at the moment it's just an idea, but it would make the flags -n and -e recursive.
-** -v Display the version (Right now it's just alpha software so it doesn't have this).
-** -h or --help to display this information (The help is fake :)).
+
+
+-n To move files by title to a new directory with the name.
+-e To Move files by extension.
+-r at the moment it's just an idea, but it would make the flags -n and -e recursive.
+-v Display the version (Right now it's just alpha software so it doesn't have this).
+-h or --help to display this information (The help is fake :)).
+
 ** Exit status:
 0 if OK,
 1 some files could not be copied
