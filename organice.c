@@ -35,6 +35,7 @@ void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_O
 void Create_Directorie(int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[]);
 void Help(int flag);
+
 int main(int argc, char *argv[])
 {
     flag_number(argv);

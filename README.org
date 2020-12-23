@@ -21,7 +21,7 @@ Move files (by extension or part of their name) to a new directory. This new dir
 - 1 some files could not be copied.
 
 ** EXAMPLES
-- $ organice -n "Homework" /(all of the files with "Homework" in their names will be stored in a new directory)/
+- $ organice -n Homework /(all of the files with "Homework" in their names will be stored in a new directory)/
 - $ organice -e .pdf /(all of the pdf's of this directorie are going to be stored in a new directory)/
 
 ** AUTHOR
