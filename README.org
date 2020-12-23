@@ -5,7 +5,7 @@
 =organice= [FLAG] [EXTENSION/NAME]...
 
 ** DESCRIPTION
-Makes a directory and stores all the files in two main ways, by extension or by how many they are.
+Makes a directory and store it in a new directory. This new directory will be created in two main ways: by name or file type extension.
 
 |------------------+-----------------------------------------------------------------|
 |------------------+-----------------------------------------------------------------|
@@ -17,13 +17,18 @@ Makes a directory and stores all the files in two main ways, by extension or by 
 
 
 *** Exit status (it doesn't work right now):
-0 if OK,
-1 some files could not be copied.
+- 0 if OK,
+- 1 some files could not be copied.
+
+** EXAMPLES
+- $ organice -n "Homework" /(all of the files with "Homework" in their names will be stored in a new directory)/
+- $ organice -e .pdf /(all of the pdf's of this directorie are going to be stored in a new directory)/
+
 ** AUTHOR
 Santiago Pedroza Díaz
 
 ** REPORTING BUGS
-Let me know any bugs you can contact issue a bug in the github issues.
+Let me know of any bugs you can submit an issue or bug in github.
 
 ** COPYRIGHT
 Copyright  ©  2020  Free  Software  Foundation,  Inc.   License  GPLv3+:  GNU  GPL  version   3   or   later
