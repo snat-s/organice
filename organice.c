@@ -196,5 +196,6 @@ void Help(int flag)
         "-e To move files by extension. \n"
         "-r At the moment it's an idea. Make flags -n and -e recursive.\n"
         "-v Displays the version.\n"
-        "-h or --help Displays this information.\n");
+        "-h or --help Displays this information.\n"
+        "For more information check tne man page.\n");
 }
