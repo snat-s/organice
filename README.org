@@ -23,11 +23,12 @@ Move files (by extension or part of their name) to a new directory. This new dir
 ** EXAMPLES
 - $ organice -n Homework /(all of the files with "Homework" in their names will be stored in a new directory)/
 - $ organice -e .pdf /(all of the pdf's of this directorie are going to be stored in a new directory)/
+- $ organice -e -r /(all of the files are going to be stored by extension recursively)/
 
 ** AUTHOR
 Santiago Pedroza Díaz
 
-** REPORTING BUGS
+** REPORTING BUG
 Let me know of any bugs you can submit an issue or bug in github.
 
 ** COPYRIGHT
