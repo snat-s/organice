@@ -32,7 +32,7 @@ int Number_Of_Files(DIR *folder, struct dirent *entry, int i);
 void flag_number(char *argv[]);
 void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[], struct Files_To_Be_Moved Files_To_Be_Moved[]);
 void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_Of_Files[][256]);
-void Create_Directorie(int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
+void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[]);
 void Help(int flag);
 
@@ -58,9 +58,10 @@ int main(int argc, char *argv[])
             folder = opendir(".");
 
             Make_Array_Of_Files(folder, entry, &i, Array_Of_Files);
+            printf("%d\n", flag);
             Files_Moved(&files,argc,Array_Of_Files,argv, Files_To_Be_Moved);
             getcwd(cwd,sizeof(cwd));
-            Create_Directorie(argc,Files_To_Be_Moved, argv, cwd);
+            Create_Directorie(files,argc,Files_To_Be_Moved, argv, cwd);
             Move_Files(argc,files,Files_To_Be_Moved, cwd, argv);
             //printf("\n%d\n", files);
             /* for(int k=0;k<9;k++) */
@@ -68,10 +69,7 @@ int main(int argc, char *argv[])
             /*   printf("%d. %s %s\n", k, Files_To_Be_Moved[k].Files_To_Be_Moved, Files_To_Be_Moved[k].Type_Of_Extension ); */
             /* } */
         }
-        }
-
-
-
+    }
     return(0);
 }
 
@@ -83,6 +81,10 @@ void flag_number(char *argv[])
     } else if(strcmp(argv[1],"-e")==0)
     {
         flag = 2;
+        if (strcmp(argv[2],"-r")==0)
+        {
+            flag = 5;
+        }
     } else if(strcmp(argv[1],"-v")==0)
     {
         flag = 3;
@@ -129,6 +131,8 @@ void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_O
 
 void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[], struct Files_To_Be_Moved Files_To_Be_Moved[])
 {
+    if (flag!=5)
+    {
         int j=0;
         for(int k=2;k<argc;k++)
         {
@@ -146,8 +150,27 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
             }
         }
         *files=j;
+    }
+    else if(flag==5)
+    {
+        const char point[2]=".";
+        for(int i=0; i<*files;i++)
+            {
+                char *ret;
+                strcpy(Files_To_Be_Moved[i].Files_To_Be_Moved,Array_Of_Files[i]);
+                //printf("%s\n", Files_To_Be_Moved[i].Files_To_Be_Moved);
+                ret = strstr(Array_Of_Files[i],point);
+                if(ret!=NULL)
+                {
+                    strcpy(Files_To_Be_Moved[i].Type_Of_Extension,ret);
+                    //printf("%d %s %s\n", i, Files_To_Be_Moved[i].Type_Of_Extension,Files_To_Be_Moved[i].Files_To_Be_Moved);
+                    //printf("%s\n", Files_To_Be_Moved[i].Type_Of_Extension);
+                }
+            }
+    }
 }
-void Create_Directorie(int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd [])
+
+void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd [])
 {
     if (flag==1)
     {
@@ -159,14 +182,31 @@ void Create_Directorie(int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], 
     }
     else if(flag==2)
     {
-    const char point[2]=".";
-    for(int i=2, j=0;i<argc; i++,j++)
-    {
-        char *ptr;
-        ptr=strtok(argv[i],point);
-        sprintf(Files_To_Be_Moved[j].path, "%s/%s/", cwd, ptr);
-        mkdir(Files_To_Be_Moved[j].path, 0777);
+        const char point[2]=".";
+        for(int i=2, j=0;i<argc; i++,j++)
+        {
+            char *ptr;
+            ptr=strtok(argv[i],point);
+            sprintf(Files_To_Be_Moved[j].path, "%s/%s/", cwd, ptr);
+            mkdir(Files_To_Be_Moved[j].path, 0777);
+        }
     }
+    else if (flag==5)
+    {
+        const char point[2]=".";
+        for(int i=0;i<files;i++)
+        {
+            char *ptr;
+            ptr=strtok(Files_To_Be_Moved[i].Type_Of_Extension,point);
+            sprintf(Files_To_Be_Moved[i].path, "%s/%s/",cwd,ptr);
+            for(int j=0;j<i;j++)
+            {
+                if (strcmp(Files_To_Be_Moved[i].path,Files_To_Be_Moved[j].path)!=0) {
+                   // printf("%s\n",Files_To_Be_Moved[i].path);
+                    mkdir(Files_To_Be_Moved[i].path,0777);
+                }
+            }
+        }
     }
    /*  Does not support hidden directories so right know creates the directorie.
     *  Later I might add the flag to create a hidden directorie. */
@@ -174,6 +214,8 @@ void Create_Directorie(int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], 
 
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[])
 {
+    if(flag==1 || flag==2)
+    {
     for(int j=2, k=0; j<argc; j++,k++)
     {
         for(int i=0;i<files;i++)
@@ -188,6 +230,18 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
             }
         }
     }
+    }
+    else if(flag==5)
+    {
+        for(int i=0;i<files;i++)
+        {
+            char old_path[256], new_path[256];
+            sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].Files_To_Be_Moved);
+            sprintf(new_path,"%s%s", Files_To_Be_Moved[i].path,Files_To_Be_Moved[i].Files_To_Be_Moved);
+            rename(old_path, new_path);
+            //printf("%s\n %s\n-------------------\n", old_path,new_path);
+        }
+    }
 }
 
 void Help(int flag)
@@ -198,5 +252,5 @@ void Help(int flag)
         "-r At the moment it's an idea. Make flags -n and -e recursive.\n"
         "-v Displays the version.\n"
         "-h or --help Displays this information.\n"
-        "For more information check tne man page.\n");
+        "For more information check the man page.\n");
 }
