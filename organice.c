@@ -34,7 +34,7 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
 void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_Of_Files[][256]);
 void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[]);
-void Help(int flag);
+void Help(void);
 
 int main(int argc, char *argv[])
 {
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     {
         if(flag==4)
         {
-            Help(flag);
+            Help();
         }
         else
         {
@@ -90,7 +90,10 @@ void flag_number(char *argv[])
         flag = 3;
     } else if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0) {
         flag = 4;
-    } else
+    }else if (argv[1]==NULL) {
+        printf("Add more arguments.");
+    }
+    else
     {
      perror("There has been an error, see --help to learn how organice works.");
      flag = 0;
@@ -244,7 +247,7 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
     }
 }
 
-void Help(int flag)
+void Help(void)
 {
  printf("\n Organice --help\n"
         "-n   To move files by title to a new directory with name.\n"
