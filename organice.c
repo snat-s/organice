@@ -38,8 +38,15 @@ void Help(void);
 
 int main(int argc, char *argv[])
 {
-    flag_number(argv);
-    if(flag!=0)
+//printf("%s", argv[1]);
+    if(argc>=2)
+    {
+        flag_number(argv);
+    }else{
+        printf("\nToo few arguments, check the man page or --help.\n");
+    }
+
+    if(flag>0 && flag<=5)
     {
         if(flag==4)
         {
