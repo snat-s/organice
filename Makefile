@@ -8,10 +8,15 @@ OBJ = ${SRC:.c}
 PREFIX = /usr
 MANPREFIX = /usr/local/share/man
 
-all: install uninstall
+CC = gcc
 
-install:
-	@gcc organice.c -o organice
+all: organice
+
+organice:
+	${CC} -o organice organice.o
+	#gcc organice -o organice
+
+install: all
 	@echo installing executable to ${DESTDIR}${PREFIX}/bin
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
 	@cp -f organice ${DESTDIR}${PREFIX}/bin
