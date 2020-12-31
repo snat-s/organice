@@ -5,7 +5,7 @@
 =organice= [FLAG] [EXTENSION/NAME]...
 
 ** DESCRIPTION
-Move files (by extension or part of their name) to a new directory. This new directory will be created in two main ways: by name or file type extension.
+Move files (by extension or part of their name) to a new directory.
 
 |------------------+------------------------------------------------------------|
 |------------------+------------------------------------------------------------|

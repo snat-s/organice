@@ -2,7 +2,7 @@
 # Organice
 # I literally learned from to use make from suckless. Keep it simple!
 # See LICENSE file for copyright and license details.
-# @version 0.1
+# @version 1.0
 SRC = organice.c
 OBJ = ${SRC:.c}
 PREFIX = /usr
