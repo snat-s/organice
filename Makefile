@@ -14,7 +14,6 @@ all: organice
 
 organice:
 	${CC} -o organice organice.o
-	#gcc organice -o organice
 
 install: all
 	@echo installing executable to ${DESTDIR}${PREFIX}/bin
