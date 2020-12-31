@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
             folder = opendir(".");
 
             Make_Array_Of_Files(folder, entry, &i, Array_Of_Files);
-            printf("%d\n", flag);
+            //printf("%d\n", flag);
             Files_Moved(&files,argc,Array_Of_Files,argv, Files_To_Be_Moved);
             getcwd(cwd,sizeof(cwd));
             Create_Directorie(files,argc,Files_To_Be_Moved, argv, cwd);
@@ -85,10 +85,10 @@ void flag_number(char *argv[])
     if(strcmp(argv[1],"-n")==0)
     {
         flag = 1;
-    } else if(strcmp(argv[1],"-e")==0)
+    } else if(strcmp(argv[1],"-e")==0 || strcmp(argv[1],"-er")==0 )
     {
         flag = 2;
-        if (strcmp(argv[2],"-r")==0)
+        if (strcmp(argv[2],"-r")==0 || strcmp(argv[1],"-er")==0)
         {
             flag = 5;
         }
