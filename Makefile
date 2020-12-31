@@ -1,28 +1,31 @@
 ##
 # Organice
-#
-# @file
+# I literally learned from to use make from suckless. Keep it simple!
+# 
 # @version 0.1
 SRC = organice.c
 OBJ = ${SRC:.c}
+PREFIX = /usr
+MANPREFIX = /usr/local/share/man
 
-all: clean install
-
-clean:
-	rm -f organice
+all: install uninstall
 
 install:
-	gcc organice.c -o organice
-	mkdir -p ${DESTDIR}${PREFIX}/bin
-	cp -f organice ${DESTDIR}${PREFIX}/bin
-	chmod 755 ${DESTDIR}${PREFIX}/bin/organice
-	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	sed "s/VERSION/${VERSION}/g" <organice.1 >${DESTDIR}${MANPREFIX}/man1/organice.1
-	chmod 644 ${DESTDIR}${MANPREFIX}/man1/organice.1
+	@gcc organice.c -o organice
+	@echo installing executable to ${DESTDIR}${PREFIX}/bin
+	@mkdir -p ${DESTDIR}${PREFIX}/bin
+	@cp -f organice ${DESTDIR}${PREFIX}/bin
+	@chmod 755 ${DESTDIR}${PREFIX}/bin/organice
+	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
+	@cp -f organice.1 ${DESTDIR}${MANPREFIX}/man1/organice.1
+	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
+	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/organice.1
 
 uninstall:
-	rm -f ${DESTDIR}${PREFIX}/bin/organice
-	rm -f ${DESTDIR}${MANPREFIX}/man1/organice.1
+	@echo uninstalling executable from ${DESTDIR}${PREFIX}/bin
+	@rm -f ${DESTDIR}${PREFIX}/bin/organice
+	@echo uninstalling manual page from ${DESTDIR}${MANPREFIX}/man1
+	@rm -f ${DESTDIR}${MANPREFIX}/man1/organice.1
 
-
+.PHONY: all install uninstall
 # end
