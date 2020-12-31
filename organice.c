@@ -34,7 +34,9 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
 void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_Of_Files[][256]);
 void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[]);
+
 void Help(void);
+void Version(void);
 
 int main(int argc, char *argv[])
 {
@@ -51,6 +53,9 @@ int main(int argc, char *argv[])
         if(flag==4)
         {
             Help();
+        }
+        else if (flag==3) {
+            Version();
         }
         else
         {
@@ -263,4 +268,15 @@ void Help(void)
         "-v Displays the version.\n"
         "-h or --help Displays this information.\n"
         "For more information check the man page.\n");
+}
+
+void Version(void)
+{
+    printf("\norganice 1.00 \n"
+           "Copyright (C) 2020-2021\n"
+           "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\n"
+           "This is free software: you are free to change and redistribute it.\n"
+           "There is NO WARRANTY, to the extent permitted by law.\n"
+
+           "Written by Santiago Pedroza.\n");
 }
