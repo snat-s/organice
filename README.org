@@ -2,7 +2,7 @@
 #+DESCRIPTION: Organize your files from the terminal fast.
 #+AUTHOR: Santiago Pedroza Diaz
 ** SYNOPSIS
-=organice= [FLAG] [EXTENSION/NAME]...
+=organice= [FLAG] [EXTENSION/PART OF THE NAME]...
 
 ** DESCRIPTION
 Move files (by extension or part of their name) to a new directory.
@@ -15,10 +15,13 @@ Move files (by extension or part of their name) to a new directory.
 | =-v=             | Display the version (it's alpha right now).                |
 | =-h= or =--help= | Displays this information.                                 |
 
+You can find the =organice= tool in the AUR as =organice-git=.
+If you have yay you can do a simple =yay -S organice-git=
 
 *** Exit status (it doesn't work right now):
 - 0 if OK,
 - 1 some files could not be copied.
+
 
 ** EXAMPLES
 - $ organice -n Homework /(all of the files with "Homework" in their names will be stored in a new directory)/
@@ -28,7 +31,7 @@ Move files (by extension or part of their name) to a new directory.
 ** AUTHOR
 Santiago Pedroza Díaz
 
-** REPORTING BUG
+** REPORTING BUGS
 Let me know of any bugs you can submit an issue or bug in github.
 
 ** COPYRIGHT
