@@ -24,7 +24,6 @@ struct Files_To_Be_Moved
     char Files_To_Be_Moved[256];
     char Type_Of_Extension[256];
     char path[256];
-    //int number;
 };
 int flag;
 
@@ -40,7 +39,6 @@ void Version(void);
 
 int main(int argc, char *argv[])
 {
-//printf("%s", argv[1]);
     if(argc>=2)
     {
         flag_number(argv);
@@ -70,16 +68,11 @@ int main(int argc, char *argv[])
             folder = opendir(".");
 
             Make_Array_Of_Files(folder, entry, &i, Array_Of_Files);
-            //printf("%d\n", flag);
             Files_Moved(&files,argc,Array_Of_Files,argv, Files_To_Be_Moved);
             getcwd(cwd,sizeof(cwd));
             Create_Directorie(files,argc,Files_To_Be_Moved, argv, cwd);
             Move_Files(argc,files,Files_To_Be_Moved, cwd, argv);
-            //printf("\n%d\n", files);
-            /* for(int k=0;k<9;k++) */
-            /* { */
-            /*   printf("%d. %s %s\n", k, Files_To_Be_Moved[k].Files_To_Be_Moved, Files_To_Be_Moved[k].Type_Of_Extension ); */
-            /* } */
+
         }
     }
     return(0);
@@ -90,10 +83,10 @@ void flag_number(char *argv[])
     if(strcmp(argv[1],"-n")==0)
     {
         flag = 1;
-    } else if(strcmp(argv[1],"-e")==0 || strcmp(argv[1],"-er")==0 )
+    } else if(strcmp(argv[1],"-e")==0)
     {
         flag = 2;
-        if (strcmp(argv[2],"-r")==0 || strcmp(argv[1],"-er")==0)
+        if (strcmp(argv[2],"-r")==0)
         {
             flag = 5;
         }
@@ -159,7 +152,6 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
                 {
                     strcpy(Files_To_Be_Moved[j].Files_To_Be_Moved,Array_Of_Files[i]);
                     strcpy(Files_To_Be_Moved[j].Type_Of_Extension,argv[k]);
-                    //printf("%d %s %s\n", j, Files_To_Be_Moved[j].Type_Of_Extension,Files_To_Be_Moved[j].Files_To_Be_Moved);
                     j++;
                 }
             }
@@ -173,13 +165,10 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
             {
                 char *ret;
                 strcpy(Files_To_Be_Moved[i].Files_To_Be_Moved,Array_Of_Files[i]);
-                //printf("%s\n", Files_To_Be_Moved[i].Files_To_Be_Moved);
                 ret = strstr(Array_Of_Files[i],point);
                 if(ret!=NULL)
                 {
                     strcpy(Files_To_Be_Moved[i].Type_Of_Extension,ret);
-                    //printf("%d %s %s\n", i, Files_To_Be_Moved[i].Type_Of_Extension,Files_To_Be_Moved[i].Files_To_Be_Moved);
-                    //printf("%s\n", Files_To_Be_Moved[i].Type_Of_Extension);
                 }
             }
     }
@@ -217,7 +206,6 @@ void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be
             for(int j=0;j<i;j++)
             {
                 if (strcmp(Files_To_Be_Moved[i].path,Files_To_Be_Moved[j].path)!=0) {
-                   // printf("%s\n",Files_To_Be_Moved[i].path);
                     mkdir(Files_To_Be_Moved[i].path,0777);
                 }
             }
@@ -241,7 +229,6 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
             sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].Files_To_Be_Moved);
             sprintf(new_path,"%s%s", Files_To_Be_Moved[k].path,Files_To_Be_Moved[i].Files_To_Be_Moved);
             rename(old_path, new_path);
-            //printf("%s\n %s\n-------------------\n", old_path,new_path);
             }
         }
     }
@@ -254,7 +241,6 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
             sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].Files_To_Be_Moved);
             sprintf(new_path,"%s%s", Files_To_Be_Moved[i].path,Files_To_Be_Moved[i].Files_To_Be_Moved);
             rename(old_path, new_path);
-            //printf("%s\n %s\n-------------------\n", old_path,new_path);
         }
     }
 }
