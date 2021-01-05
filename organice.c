@@ -28,7 +28,7 @@ struct Files_To_Be_Moved
 int flag;
 
 int Number_Of_Files(DIR *folder, struct dirent *entry, int i);
-void flag_number(char *argv[]);
+void flag_number(char *argv[], int argc);
 void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[], struct Files_To_Be_Moved Files_To_Be_Moved[]);
 void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_Of_Files[][256]);
 void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 {
     if(argc>=2)
     {
-        flag_number(argv);
+        flag_number(argv, argc);
     }else{
         printf("\nToo few arguments, check the man page or --help.\n");
     }
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     return(0);
 }
 
-void flag_number(char *argv[])
+void flag_number(char *argv[], int argc)
 {
     if(strcmp(argv[1],"-n")==0)
     {
@@ -86,9 +86,12 @@ void flag_number(char *argv[])
     } else if(strcmp(argv[1],"-e")==0)
     {
         flag = 2;
-        if (strcmp(argv[2],"-r")==0)
+        if(argc>=3)
+        {
+         if (strcmp(argv[2],"-r")==0)
         {
             flag = 5;
+        }
         }
     } else if(strcmp(argv[1],"-v")==0)
     {
