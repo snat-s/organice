@@ -86,7 +86,7 @@ void flag_number(char *argv[], int argc)
     } else if(strcmp(argv[1],"-e")==0)
     {
         flag = 2;
-        if(argc>=3)
+        if(argc==3)
         {
          if (strcmp(argv[2],"-r")==0)
         {
