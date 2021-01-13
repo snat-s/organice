@@ -26,7 +26,7 @@ If you have yay you can do a simple =yay -S organice-git=
 ** EXAMPLES
 - $ organice -n Homework /(all of the files with "Homework" in their names will be stored in a new directory)/
 - $ organice -e .pdf /(all of the pdf's of this directory are going to be stored in a new directory)/
-- $ organice -e -r /(all of the files are going to be stored by extension recursively)/
+- $ organice -er /(all of the files are going to be stored by extension in a new directory inside your current working directory)/
 
 ** AUTHOR
 Santiago Pedroza Díaz
