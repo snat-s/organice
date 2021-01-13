@@ -21,8 +21,8 @@
 
 struct Files_To_Be_Moved
 {
-    char Files_To_Be_Moved[256];
-    char Type_Of_Extension[256];
+    char file_name[256];
+    char type_of_extension[256];
     char path[256];
 };
 int flag;
@@ -33,7 +33,6 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
 void Make_Array_Of_Files(DIR *folder, struct dirent *entry, int *i, char Array_Of_Files[][256]);
 void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be_Moved[], char *argv[], char cwd []);
 void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[], char cwd[], char *argv[]);
-
 void Help(void);
 void Version(void);
 
@@ -160,8 +159,8 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
                 ret = strstr(Array_Of_Files[i],argv[k]);
                 if(ret!=NULL)
                 {
-                    strcpy(Files_To_Be_Moved[j].Files_To_Be_Moved,Array_Of_Files[i]);
-                    strcpy(Files_To_Be_Moved[j].Type_Of_Extension,argv[k]);
+                    strcpy(Files_To_Be_Moved[j].file_name,Array_Of_Files[i]);
+                    strcpy(Files_To_Be_Moved[j].type_of_extension,argv[k]);
                     j++;
                 }
             }
@@ -174,11 +173,11 @@ void Files_Moved(int *files, int argc, char Array_Of_Files[][256], char *argv[],
         for(int i=0; i<*files;i++)
             {
                 char *ret;
-                strcpy(Files_To_Be_Moved[i].Files_To_Be_Moved,Array_Of_Files[i]);
+                strcpy(Files_To_Be_Moved[i].file_name,Array_Of_Files[i]);
                 ret = strstr(Array_Of_Files[i],point);
                 if(ret!=NULL)
                 {
-                    strcpy(Files_To_Be_Moved[i].Type_Of_Extension,ret);
+                    strcpy(Files_To_Be_Moved[i].type_of_extension,ret);
                 }
             }
     }
@@ -211,7 +210,7 @@ void Create_Directorie(int files,int argc, struct Files_To_Be_Moved  Files_To_Be
         for(int i=0;i<files;i++)
         {
             char *ptr;
-            ptr=strtok(Files_To_Be_Moved[i].Type_Of_Extension,point);
+            ptr=strtok(Files_To_Be_Moved[i].type_of_extension,point);
             sprintf(Files_To_Be_Moved[i].path, "%s/%s/",cwd,ptr);
             for(int j=0;j<i;j++)
             {
@@ -233,11 +232,11 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
     {
         for(int i=0;i<files;i++)
         {
-            if(strcmp(Files_To_Be_Moved[i].Type_Of_Extension,argv[j])==0)
+            if(strcmp(Files_To_Be_Moved[i].type_of_extension,argv[j])==0)
             {
             char old_path[256], new_path[256];
-            sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].Files_To_Be_Moved);
-            sprintf(new_path,"%s%s", Files_To_Be_Moved[k].path,Files_To_Be_Moved[i].Files_To_Be_Moved);
+            sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].file_name);
+            sprintf(new_path,"%s%s", Files_To_Be_Moved[k].path,Files_To_Be_Moved[i].file_name);
             rename(old_path, new_path);
             }
         }
@@ -248,8 +247,8 @@ void Move_Files(int argc,int files, struct Files_To_Be_Moved Files_To_Be_Moved[]
         for(int i=0;i<files;i++)
         {
             char old_path[256], new_path[256];
-            sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].Files_To_Be_Moved);
-            sprintf(new_path,"%s%s", Files_To_Be_Moved[i].path,Files_To_Be_Moved[i].Files_To_Be_Moved);
+            sprintf(old_path,"%s/%s", cwd, Files_To_Be_Moved[i].file_name);
+            sprintf(new_path,"%s%s", Files_To_Be_Moved[i].path,Files_To_Be_Moved[i].file_name);
             rename(old_path, new_path);
         }
     }
