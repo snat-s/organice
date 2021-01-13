@@ -83,7 +83,7 @@ void flag_number(char *argv[], int argc)
     if(strcmp(argv[1],"-n")==0)
     {
         flag = 1;
-    } else if(strcmp(argv[1],"-e")==0)
+    } else if(strcmp(argv[1],"-e") == 0 || strcmp(argv[1], "-er") == 0)
     {
         flag = 2;
         if(argc==3)
@@ -92,6 +92,13 @@ void flag_number(char *argv[], int argc)
         {
             flag = 5;
         }
+        }
+        else if (argc==2)
+        {
+            if (strcmp(argv[1], "-er")==0)
+            {
+                flag = 5;
+            }
         }
     } else if(strcmp(argv[1],"-v")==0)
     {
