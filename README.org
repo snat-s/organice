@@ -18,11 +18,6 @@ Move files (by extension or part of their name) to a new directory.
 You can find the =organice= tool in the AUR as =organice-git=.
 If you have yay you can do a simple =yay -S organice-git=
 
-*** Exit status (it doesn't work right now):
-- 0 if OK,
-- 1 some files could not be copied.
-
-
 ** EXAMPLES
 - $ organice -n Homework /(all of the files with "Homework" in their names will be stored in a new directory)/
 - $ organice -e .pdf /(all of the pdf's of this directory are going to be stored in a new directory)/
